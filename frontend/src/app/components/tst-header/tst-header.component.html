@@ -1,0 +1,39 @@
+<header class="header" >
+    <div class="containerj content-header">
+        <div class="bar">
+            <div class="logo">
+                <a [routerLink]="['/auth/home']">
+                    <h1 class="site-name" ><span></span></h1>
+                </a>
+            </div>
+            <div class="log">
+                @if (logedComputed()) {
+                    <a class="header-login" (click)="logOut()" >Logout</a>
+                }@else{
+                    <a class="header-login" [routerLink]="['/user/login']">Login</a>
+                }
+                <nav class="navbar">
+                    @if (roleComputed() === 'Conferencista') {
+                        <a [routerLink]="['/auth/home']">Home</a>
+                        <a [routerLink]="['/auth/myconfs']">Mis Conferencias</a>
+                        <a [routerLink]="['/auth/confer/add']">Añadir Conferencia</a>
+                    }
+                    @if (roleComputed() ==='admin'){
+                        <a [routerLink]="['/auth/home']">Home</a>
+                        <a [routerLink]="['/auth/administradores']">Cambiar status</a>
+                        <a [routerLink]="['/auth/horarios']">Ver Horarios</a>
+                        <a [routerLink]="['/auth/all-confs']">Ver Conferencias</a>
+                        <a [routerLink]="['statistics']" >Estadisticas</a>
+                    }
+                    @if (roleComputed() ==='Asistente'){
+                        <a [routerLink]="['/auth/myassist']">Mis Conferencias</a>
+                    }
+                </nav>
+            </div>
+        </div>
+        <div class="slogan">
+            <h1>Encuentra Tu tesis</h1>
+            <p>¡las mejores tesis aqui!</p>
+        </div>
+    </div>
+</header>
